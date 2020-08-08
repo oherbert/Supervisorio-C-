@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.btnSendData = new System.Windows.Forms.Button();
             this.txtSendArduino = new System.Windows.Forms.TextBox();
@@ -43,9 +45,11 @@
             this.offsetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunicaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.históricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chartPrincipal = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPrincipal)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSendData
@@ -191,11 +195,25 @@
             this.históricoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.históricoToolStripMenuItem.Text = "Histórico";
             // 
+            // chartPrincipal
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartPrincipal.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPrincipal.Legends.Add(legend1);
+            this.chartPrincipal.Location = new System.Drawing.Point(203, 41);
+            this.chartPrincipal.Name = "chartPrincipal";
+            this.chartPrincipal.Size = new System.Drawing.Size(1092, 520);
+            this.chartPrincipal.TabIndex = 5;
+            this.chartPrincipal.Text = "ICBT 1";
+            this.chartPrincipal.UseWaitCursor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 588);
+            this.Controls.Add(this.chartPrincipal);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -207,6 +225,7 @@
             this.tableLayoutPanel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPrincipal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem configuraçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comunicaçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPrincipal;
     }
 }
 
