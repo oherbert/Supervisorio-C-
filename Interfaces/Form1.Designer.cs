@@ -197,8 +197,10 @@
             // 
             // chartPrincipal
             // 
+            this.chartPrincipal.BorderlineColor = System.Drawing.Color.Black;
             chartArea1.Name = "ChartArea1";
             this.chartPrincipal.ChartAreas.Add(chartArea1);
+            this.chartPrincipal.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             legend1.Name = "Legend1";
             this.chartPrincipal.Legends.Add(legend1);
             this.chartPrincipal.Location = new System.Drawing.Point(203, 41);

@@ -33,13 +33,66 @@ namespace Arduino_teste2
             chart.AxisX.LabelStyle.IsEndLabelVisible = true;
 
             chart.AxisY.Minimum = 0;
-            chart.AxisY.Maximum = 200;
+            chart.AxisY.Maximum = 180;
 
             chartPrincipal.Series.Add("Secagem");
             chartPrincipal.Series["Secagem"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chartPrincipal.Series["Secagem"].Color = Color.BlueViolet;
             chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:30:00",120);
             chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:31:00", 122);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:32:00", 124);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:33:00", 126);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:34:00", 128);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:35:00", 140);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:36:00", 150);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:37:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:38:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:39:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:38:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:39:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:40:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:41:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:42:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:43:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:44:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:45:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:46:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:47:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:48:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:49:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:50:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:51:00", 158);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:52:00", 157);
+            chartPrincipal.Series["Secagem"].Points.AddXY("08/08/2020 09:53:00", 158);
+
+            chartPrincipal.Series.Add("Vulcanização");
+            chartPrincipal.Series["Vulcanização"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            chartPrincipal.Series["Vulcanização"].Color = Color.Coral;
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:30:00", 120);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:31:00", 122);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:32:00", 124);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:33:00", 126);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:34:00", 128);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:35:00", 140);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:36:00", 150);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:37:00", 160);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:38:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:39:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:40:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:41:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:42:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:43:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:44:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:45:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:46:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:47:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:48:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:49:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:50:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:51:00", 168);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:52:00", 167);
+            chartPrincipal.Series["Vulcanização"].Points.AddXY("08/08/2020 09:53:00", 166);
+
 
         }
 
