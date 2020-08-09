@@ -61,18 +61,28 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\Form1.cs">
+    <Compile Include="Interfaces\Offsets.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaces\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Interfaces\Offsets.Designer.cs">
+      <DependentUpon>Offsets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Arduino.cs" />
     <Compile Include="Utils\Chart.cs" />
     <Compile Include="Utils\Regex.cs" />
-    <EmbeddedResource Include="Interfaces\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Interfaces\Offsets.resx">
+      <DependentUpon>Offsets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaces\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
