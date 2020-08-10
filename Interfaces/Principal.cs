@@ -75,29 +75,6 @@ namespace Arduino_teste2
         }
 
 
-
-        private void btnSendData_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-                
-
-        private void cboPort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void offsetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Offsets offsets = new Offsets();
@@ -181,6 +158,7 @@ namespace Arduino_teste2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
             if (Arduino.portCom != null && Arduino.streamCom != "Fechada")
             {
                 lblCom.Text = Arduino.streamCom;
@@ -205,6 +183,52 @@ namespace Arduino_teste2
         private void desconectarMenu_Click(object sender, EventArgs e)
         {
             Arduino.close();
+        }
+
+        // Para mostrar a porta selecionada
+        private void comunicaçãoMenu_MouseEnter(object sender, EventArgs e)
+        {
+            com1Menu.Checked = false;
+            com2Menu.Checked = false;
+            com3Menu.Checked = false;
+            com4Menu.Checked = false;
+            com5Menu.Checked = false;
+            com6Menu.Checked = false;
+            com7Menu.Checked = false;
+            com8Menu.Checked = false;
+            com9Menu.Checked = false;
+
+
+            switch (Arduino.portCom) 
+            {
+                case "COM1":
+                    com1Menu.Checked = true;
+                    break;
+                case "COM2":
+                    com2Menu.Checked = true;
+                    break;
+                case "COM3":
+                    com3Menu.Checked = true;
+                    break;
+                case "COM4":
+                    com4Menu.Checked = true;
+                    break;
+                case "COM5":
+                    com5Menu.Checked = true;
+                    break;
+                case "COM6":
+                    com6Menu.Checked = true;
+                    break;
+                case "COM7":
+                    com7Menu.Checked = true;
+                    break;
+                case "COM8":
+                    com8Menu.Checked = true;
+                    break;
+                case "COM9":
+                    com9Menu.Checked = true;
+                    break;
+            }
         }
     }
 }

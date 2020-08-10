@@ -34,6 +34,7 @@ namespace Arduino_teste2.Utils
             try
             {
                 serialPort.Open();
+                if (reading.IsAlive == false)
                 reading.Start();
             }
             catch (Exception)
@@ -50,31 +51,39 @@ namespace Arduino_teste2.Utils
 
     public static void Read()
     {
-
-        while (serialPort.IsOpen == true)
+            while (true)
         {
-            try
-            {
-                string message = serialPort.ReadLine();
-                streamCom= message;
-            }
-            catch (Exception e)
-            {
-                    if (e is TimeoutException)
-                        Console.WriteLine("Sem dados");
-                    else if (e is ThreadInterruptedException)
-                        Console.WriteLine("Thread Ex");
-            }
+                if (serialPort.IsOpen == true)
+                {
+                    try
+                    {
+                        string message = serialPort.ReadLine();
+                        streamCom = message;
+                    }
+                    catch (Exception e)
+                    {
+                        if (e is TimeoutException)
+                            Console.WriteLine("Sem dados");
+                        else if (e is ThreadStateException)
+                            Console.WriteLine("Thread encereado");
+                    }
+                }
+                else
+                {
+                    Thread.Sleep(2000);
+                    Console.WriteLine("Porta fechada");
+                    streamCom = "Fechada";
+                }
         }
 
-            Console.WriteLine("Porta fechada");
-            streamCom = "Fechada";
+            
     }
 
         public static void close()
         {
             if (serialPort.IsOpen == true && reading.IsAlive == true)
             {
+              
                 serialPort.Close();
             }
         }

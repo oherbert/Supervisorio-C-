@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -41,7 +41,7 @@
             this.ajustesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comunicaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comunicaçãoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.com1Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.com2Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.com3Menu = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +79,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(226, 657);
             this.tableLayoutPanel1.TabIndex = 3;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            
             // 
             // tableLayoutPanel2
             // 
@@ -98,7 +98,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(220, 125);
             this.tableLayoutPanel2.TabIndex = 4;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
+           
             // 
             // lblCom
             // 
@@ -155,16 +155,16 @@
             // configuraçãoToolStripMenuItem
             // 
             this.configuraçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comunicaçãoToolStripMenuItem,
+            this.comunicaçãoMenu,
             this.conectarMenu,
             this.desconectarMenu});
             this.configuraçãoToolStripMenuItem.Name = "configuraçãoToolStripMenuItem";
             this.configuraçãoToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
             this.configuraçãoToolStripMenuItem.Text = "Configuração";
             // 
-            // comunicaçãoToolStripMenuItem
+            // comunicaçãoMenu
             // 
-            this.comunicaçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.comunicaçãoMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.com1Menu,
             this.com2Menu,
             this.com3Menu,
@@ -174,70 +174,71 @@
             this.com7Menu,
             this.com8Menu,
             this.com9Menu});
-            this.comunicaçãoToolStripMenuItem.Name = "comunicaçãoToolStripMenuItem";
-            this.comunicaçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.comunicaçãoToolStripMenuItem.Text = "Comunicação";
+            this.comunicaçãoMenu.Name = "comunicaçãoMenu";
+            this.comunicaçãoMenu.Size = new System.Drawing.Size(180, 22);
+            this.comunicaçãoMenu.Text = "Comunicação";
+            this.comunicaçãoMenu.MouseEnter += new System.EventHandler(this.comunicaçãoMenu_MouseEnter);
             // 
             // com1Menu
             // 
             this.com1Menu.Name = "com1Menu";
-            this.com1Menu.Size = new System.Drawing.Size(108, 22);
+            this.com1Menu.Size = new System.Drawing.Size(180, 22);
             this.com1Menu.Text = "COM1";
             this.com1Menu.Click += new System.EventHandler(this.com1Menu_Click);
             // 
             // com2Menu
             // 
             this.com2Menu.Name = "com2Menu";
-            this.com2Menu.Size = new System.Drawing.Size(108, 22);
+            this.com2Menu.Size = new System.Drawing.Size(180, 22);
             this.com2Menu.Text = "COM2";
             this.com2Menu.Click += new System.EventHandler(this.com2Menu_Click);
             // 
             // com3Menu
             // 
             this.com3Menu.Name = "com3Menu";
-            this.com3Menu.Size = new System.Drawing.Size(108, 22);
+            this.com3Menu.Size = new System.Drawing.Size(180, 22);
             this.com3Menu.Text = "COM3";
             this.com3Menu.Click += new System.EventHandler(this.com3Menu_Click);
             // 
             // com4Menu
             // 
             this.com4Menu.Name = "com4Menu";
-            this.com4Menu.Size = new System.Drawing.Size(108, 22);
+            this.com4Menu.Size = new System.Drawing.Size(180, 22);
             this.com4Menu.Text = "COM4";
             this.com4Menu.Click += new System.EventHandler(this.com4Menu_Click);
             // 
             // com5Menu
             // 
             this.com5Menu.Name = "com5Menu";
-            this.com5Menu.Size = new System.Drawing.Size(108, 22);
+            this.com5Menu.Size = new System.Drawing.Size(180, 22);
             this.com5Menu.Text = "COM5";
             this.com5Menu.Click += new System.EventHandler(this.com5Menu_Click);
             // 
             // com6Menu
             // 
             this.com6Menu.Name = "com6Menu";
-            this.com6Menu.Size = new System.Drawing.Size(108, 22);
+            this.com6Menu.Size = new System.Drawing.Size(180, 22);
             this.com6Menu.Text = "COM6";
             this.com6Menu.Click += new System.EventHandler(this.com6Menu_Click);
             // 
             // com7Menu
             // 
             this.com7Menu.Name = "com7Menu";
-            this.com7Menu.Size = new System.Drawing.Size(108, 22);
+            this.com7Menu.Size = new System.Drawing.Size(180, 22);
             this.com7Menu.Text = "COM7";
             this.com7Menu.Click += new System.EventHandler(this.com7Menu_Click);
             // 
             // com8Menu
             // 
             this.com8Menu.Name = "com8Menu";
-            this.com8Menu.Size = new System.Drawing.Size(108, 22);
+            this.com8Menu.Size = new System.Drawing.Size(180, 22);
             this.com8Menu.Text = "COM8";
             this.com8Menu.Click += new System.EventHandler(this.com8Menu_Click);
             // 
             // com9Menu
             // 
             this.com9Menu.Name = "com9Menu";
-            this.com9Menu.Size = new System.Drawing.Size(108, 22);
+            this.com9Menu.Size = new System.Drawing.Size(180, 22);
             this.com9Menu.Text = "COM9";
             this.com9Menu.Click += new System.EventHandler(this.com9Menu_Click);
             // 
@@ -269,18 +270,18 @@
             this.chartPrincipal.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chartPrincipal.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
             this.chartPrincipal.BorderlineColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.chartPrincipal.ChartAreas.Add(chartArea3);
+            chartArea2.Name = "ChartArea1";
+            this.chartPrincipal.ChartAreas.Add(chartArea2);
             this.chartPrincipal.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.chartPrincipal.Location = new System.Drawing.Point(234, 38);
             this.chartPrincipal.Name = "chartPrincipal";
             this.chartPrincipal.Size = new System.Drawing.Size(1022, 680);
             this.chartPrincipal.TabIndex = 5;
             this.chartPrincipal.Text = "ICBT 1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "ICBT 1";
-            title3.Text = "ICBT 1";
-            this.chartPrincipal.Titles.Add(title3);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "ICBT 1";
+            title2.Text = "ICBT 1";
+            this.chartPrincipal.Titles.Add(title2);
             this.chartPrincipal.UseWaitCursor = true;
             this.chartPrincipal.Click += new System.EventHandler(this.chartPrincipal_Click);
             // 
@@ -322,7 +323,7 @@
         private System.Windows.Forms.ToolStripMenuItem ajustesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem offsetsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçãoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem comunicaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem comunicaçãoMenu;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartPrincipal;
         private System.Windows.Forms.Timer timer1;
