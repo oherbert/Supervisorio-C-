@@ -1,14 +1,8 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.IO;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation;
 
 namespace Arduino_teste2.Utils
 {
@@ -49,7 +43,15 @@ namespace Arduino_teste2.Utils
         }
     }
 
-    public static void Read()
+        public static void close()
+        {
+            if (serialPort.IsOpen == true)
+            {
+                serialPort.Close();
+            }
+        }
+
+        private static void Read()
     {
             while (true)
         {
@@ -67,6 +69,7 @@ namespace Arduino_teste2.Utils
                         else if (e is ThreadStateException)
                             Console.WriteLine("Thread encereado");
                     }
+                    Thread.Sleep(1000);
                 }
                 else
                 {
@@ -79,14 +82,6 @@ namespace Arduino_teste2.Utils
             
     }
 
-        public static void close()
-        {
-            if (serialPort.IsOpen == true && reading.IsAlive == true)
-            {
-              
-                serialPort.Close();
-            }
-        }
 
 }
 }

@@ -230,5 +230,13 @@ namespace Arduino_teste2
                     break;
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Arduino.close();
+            Application.ExitThread();
+            System.Environment.Exit(0);
+            
+        }
     }
 }

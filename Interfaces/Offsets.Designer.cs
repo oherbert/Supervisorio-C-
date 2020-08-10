@@ -39,7 +39,7 @@
             // 
             // btnSalvar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(239, 169);
+            this.btnSalvar.Location = new System.Drawing.Point(205, 147);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 4;
@@ -50,7 +50,7 @@
             // txtOffSec1
             // 
             this.txtOffSec1.Culture = new System.Globalization.CultureInfo("en-US");
-            this.txtOffSec1.Location = new System.Drawing.Point(3, 50);
+            this.txtOffSec1.Location = new System.Drawing.Point(301, 39);
             this.txtOffSec1.Mask = "99.9";
             this.txtOffSec1.Name = "txtOffSec1";
             this.txtOffSec1.Size = new System.Drawing.Size(100, 20);
@@ -59,7 +59,7 @@
             // txtOffVul1
             // 
             this.txtOffVul1.Culture = new System.Globalization.CultureInfo("en-US");
-            this.txtOffVul1.Location = new System.Drawing.Point(222, 50);
+            this.txtOffVul1.Location = new System.Drawing.Point(90, 39);
             this.txtOffVul1.Mask = "99.9";
             this.txtOffVul1.Name = "txtOffVul1";
             this.txtOffVul1.Size = new System.Drawing.Size(100, 20);
@@ -69,7 +69,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(12, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(178, 20);
             this.label1.TabIndex = 4;
@@ -79,7 +79,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(222, 0);
+            this.label2.Location = new System.Drawing.Point(196, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(205, 20);
             this.label2.TabIndex = 5;
@@ -87,33 +87,35 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.55556F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.txtOffVul1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtOffSec1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(58, 66);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(51, 39);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(439, 83);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.66667F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(408, 83);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // Offsets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 322);
+            this.ClientSize = new System.Drawing.Size(519, 322);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnSalvar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Offsets";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "Offsets";
