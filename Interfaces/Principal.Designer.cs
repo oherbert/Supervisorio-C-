@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,15 +52,15 @@
             this.conectarMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chartPrincipal = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.icbt1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.chartPrincipal = new System.Windows.Forms.Integration.ElementHost();
+            this.cartesianChart1 = new LiveCharts.Wpf.CartesianChart();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPrincipal)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -268,28 +266,6 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.helpToolStripMenuItem.Text = "Ajuda";
             // 
-            // chartPrincipal
-            // 
-            this.chartPrincipal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chartPrincipal.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.chartPrincipal.BackImageAlignment = System.Windows.Forms.DataVisualization.Charting.ChartImageAlignmentStyle.Center;
-            this.chartPrincipal.BorderlineColor = System.Drawing.Color.Black;
-            chartArea1.Name = "ChartArea1";
-            this.chartPrincipal.ChartAreas.Add(chartArea1);
-            this.chartPrincipal.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.chartPrincipal.Location = new System.Drawing.Point(234, 38);
-            this.chartPrincipal.Name = "chartPrincipal";
-            this.chartPrincipal.Size = new System.Drawing.Size(1022, 680);
-            this.chartPrincipal.TabIndex = 5;
-            this.chartPrincipal.Text = "ICBT 1";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "ICBT 1";
-            title1.Text = "ICBT 1";
-            this.chartPrincipal.Titles.Add(title1);
-            this.chartPrincipal.Click += new System.EventHandler(this.chartPrincipal_Click);
-            // 
             // timer1
             // 
             this.timer1.Interval = 1000;
@@ -327,6 +303,15 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Vulcanização";
             // 
+            // chartPrincipal
+            // 
+            this.chartPrincipal.Location = new System.Drawing.Point(236, 38);
+            this.chartPrincipal.Name = "chartPrincipal";
+            this.chartPrincipal.Size = new System.Drawing.Size(1044, 657);
+            this.chartPrincipal.TabIndex = 5;
+            this.chartPrincipal.Text = "elementHost1";
+            this.chartPrincipal.Child = this.cartesianChart1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +330,6 @@
             this.tableLayoutPanel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPrincipal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,7 +348,6 @@
         private System.Windows.Forms.ToolStripMenuItem configuraçãoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comunicaçãoMenu;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartPrincipal;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem com1Menu;
         private System.Windows.Forms.ToolStripMenuItem com2Menu;
@@ -381,6 +364,8 @@
         private System.Windows.Forms.Label icbt1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Integration.ElementHost chartPrincipal;
+        private LiveCharts.Wpf.CartesianChart cartesianChart1;
     }
 }
 

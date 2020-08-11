@@ -12,6 +12,10 @@ using System.Threading;
 using LiveCharts.Wpf.Charts.Base;
 using Arduino_teste2.Interfaces;
 using Arduino_teste2.Utils;
+using LiveCharts.Wpf;
+using LiveCharts;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 
 namespace Arduino_teste2
@@ -21,56 +25,25 @@ namespace Arduino_teste2
         public Form1()
         {
             InitializeComponent();
+
+
             chartLoad();
         }
 
         void chartLoad() {
-            var chart = chartPrincipal.ChartAreas[0];
-            chart.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Auto;
-            chart.AxisY.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chart.AxisX.LabelStyle.Format = "";
-            chart.AxisY.LabelStyle.Format = "";
-            chart.AxisX.LabelStyle.IsEndLabelVisible = true;
-            
 
-            chart.AxisY.Minimum = 20;
-            chart.AxisY.Maximum = 180;
-            chart.AxisY.Interval = 10;
-            
+            Utils.Chart chart = new Utils.Chart();
 
-            chartPrincipal.Series.Add("Secagem");
-            chartPrincipal.Series["Secagem"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chartPrincipal.Series["Secagem"].Color = Color.BlueViolet;
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:30:00",120);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:31:00", 122);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:32:00", 124);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:33:00", 126);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:34:00", 128);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:35:00", 140);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:36:00", 150);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:37:00", 157);
-            chartPrincipal.Series["Secagem"].Points.AddXY("09:38:00", 158);
-            
+            cartesianChart1.Series = chart.PointShapeLineExample();
 
-
-            chartPrincipal.Series.Add("Vulcanização");
-            chartPrincipal.Series["Vulcanização"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            chartPrincipal.Series["Vulcanização"].Color = Color.Coral;
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:30:00", 120);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:31:00", 122);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:32:00", 124);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:33:00", 126);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:34:00", 128);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:35:00", 140);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:36:00", 150);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:37:00", 160);
-            chartPrincipal.Series["Vulcanização"].Points.AddXY("09:38:00", 167);
-            
         }
 
+    
+
+
+
         private void Form1_Load(object sender, EventArgs e)
-        {
-            
+        { 
             
         }
 
@@ -177,6 +150,7 @@ namespace Arduino_teste2
                 com8Menu.Enabled = true;
                 com9Menu.Enabled = true;
                 timer1.Stop();
+                
             }
         }
 
