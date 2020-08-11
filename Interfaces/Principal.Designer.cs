@@ -282,6 +282,7 @@
             this.icbt1.TabIndex = 1;
             this.icbt1.Text = "ICBT 1";
             this.icbt1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+          
             // 
             // label2
             // 

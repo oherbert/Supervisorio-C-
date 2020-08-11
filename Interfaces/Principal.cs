@@ -36,6 +36,13 @@ namespace Arduino_teste2
 
             cartesianChart1.Series = chart.PointShapeLineExample();
 
+            string[] label = new string[] { "20:01:00","20:02:00","20:03:00", "20:04:00","20:05:00" };
+            cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
+            {
+                Title = "Hora",
+                Labels = label
+            });
+
         }
 
     
@@ -212,5 +219,7 @@ namespace Arduino_teste2
             System.Environment.Exit(0);
             
         }
+
+       
     }
 }

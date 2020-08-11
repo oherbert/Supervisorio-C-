@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using LiveCharts;
@@ -15,24 +16,25 @@ namespace Arduino_teste2.Utils
 
         public SeriesCollection PointShapeLineExample()
         {
+       
 
             SeriesCollection = new SeriesCollection
             {
                 new LineSeries
                 {
                     Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
+                    Values = new ChartValues<double> { 4, 6, 5, 5 ,6 }
                 },
                 new LineSeries
                 {
                     Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
+                    Values = new ChartValues<double> { 6, 7, 5, 6 ,7 },
                     PointGeometry = null
                 },
                 new LineSeries
                 {
                     Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
+                    Values = new ChartValues<double> { 2,2,3,4,3 },
                     PointGeometry = DefaultGeometries.Square,
                     PointGeometrySize = 15
                 }
