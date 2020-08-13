@@ -16,42 +16,25 @@ using LiveCharts.Wpf;
 using LiveCharts;
 using System.Windows.Media.Animation;
 using System.Windows.Media;
-
+using Arduino_teste2.Entities;
 
 namespace Arduino_teste2
 {   
     public partial class Form1 : Form
     {
+
+        Grafico chart = new Grafico();
+
         public Form1()
         {
             InitializeComponent();
-
-
-            chartLoad();
         }
-
-        void chartLoad() {
-
-            Utils.Chart chart = new Utils.Chart();
-
-            cartesianChart1.Series = chart.PointShapeLineExample();
-
-            string[] label = new string[] { "20:01:00","20:02:00","20:03:00", "20:04:00","20:05:00" };
-            cartesianChart1.AxisX.Add(new LiveCharts.Wpf.Axis
-            {
-                Title = "Hora",
-                Labels = label
-            });
-
-        }
-
-    
-
-
 
         private void Form1_Load(object sender, EventArgs e)
-        { 
-            
+        {
+            chart.Cartesian = cartesianChart;
+            chart.createSeries();
+            chart.addRegistro(new Registro(157.0, 167.0));
         }
 
 
@@ -63,56 +46,56 @@ namespace Arduino_teste2
 
         private void com1Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM1";
+            Arduino.PortCom = "COM1";
         }
 
         private void com2Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM2";
+            Arduino.PortCom = "COM2";
         }
 
         private void com3Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM3";
+            Arduino.PortCom = "COM3";
         }
 
         private void com4Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM4";
+            Arduino.PortCom = "COM4";
         }
 
         private void com5Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM5";
+            Arduino.PortCom = "COM5";
         }
 
         private void com6Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM6";
+            Arduino.PortCom = "COM6";
         }
 
         private void com7Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM7";
+            Arduino.PortCom = "COM7";
         }
 
         private void com8Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM8";
+            Arduino.PortCom = "COM8";
         }
 
         private void com9Menu_Click(object sender, EventArgs e)
         {
-            Arduino.portCom = "COM9";
+            Arduino.PortCom = "COM9";
         }
 
         private void conectarMenu_Click(object sender, EventArgs e)
         {
-            if (Arduino.portCom != null)
+            if (Arduino.PortCom != null)
             {
                 Arduino.tryOpenPort();
 
-                if (Arduino.streamCom == "Aberta")
+                if (Arduino.StreamCom == "Aberta")
                 {
                     timer1.Start();
                     conectarMenu.Enabled = false;
@@ -139,11 +122,11 @@ namespace Arduino_teste2
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            if (Arduino.portCom != null && Arduino.streamCom != "Fechada")
+            if (Arduino.PortCom != null && Arduino.StreamCom != "Fechada")
             {
-                lblCom.Text = Arduino.streamCom;
+                lblCom.Text = Arduino.StreamCom;
             }
-            else if (Arduino.streamCom == "Fechada" )
+            else if (Arduino.StreamCom == "Fechada" )
             {
                 lblCom.Text = "Porta fechada";
                 conectarMenu.Enabled = true;
@@ -180,7 +163,7 @@ namespace Arduino_teste2
             com9Menu.Checked = false;
 
 
-            switch (Arduino.portCom) 
+            switch (Arduino.PortCom) 
             {
                 case "COM1":
                     com1Menu.Checked = true;
@@ -220,6 +203,9 @@ namespace Arduino_teste2
             
         }
 
-       
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            chart.addRegistro(new Registro(154.0, 163.0));
+        }
     }
 }
