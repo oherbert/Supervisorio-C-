@@ -1,11 +1,11 @@
 ﻿using System;
 
+
 namespace Arduino_teste2.Entities
 {
-    class Registro
+    class MeasureModel
     {
         public DateTime DateTime { get; set; }
-        public Double Zona1 { get; set; }
-      
+        public double Value { get; set; }
     }
 }

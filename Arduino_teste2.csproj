@@ -62,6 +62,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\MeasureModel.cs" />
     <Compile Include="Entities\Registro.cs" />
     <Compile Include="Interfaces\Offsets.cs">
       <SubType>Form</SubType>

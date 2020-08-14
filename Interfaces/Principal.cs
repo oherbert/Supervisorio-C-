@@ -32,9 +32,10 @@ namespace Arduino_teste2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            chart.Cartesian = cartesianChart;
-            chart.createSeries();
-            chart.addRegistro(new Registro(157.0, 167.0));
+            chart.CartesianChart = cartesianChart;
+            chart.Timer = timer2;
+            chart.chartInit(); 
+            
         }
 
 
@@ -199,13 +200,13 @@ namespace Arduino_teste2
         {
             Arduino.close();
             Application.ExitThread();
-            System.Environment.Exit(0);
+            Environment.Exit(0);
             
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            chart.addRegistro(new Registro(154.0, 163.0));
+              
         }
     }
 }

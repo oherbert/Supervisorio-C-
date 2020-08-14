@@ -1,80 +1,95 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿
+using System;
+using System.Windows.Forms;
 using LiveCharts;
+using LiveCharts.Configurations;
+using LiveCharts.WinForms;
 using LiveCharts.Wpf;
-using Arduino_teste2.Entities;
-using System.Collections.Generic;
-using System.Windows;
 
 namespace Arduino_teste2.Entities
 {
-    class  Grafico: UserControl
+     class Grafico : Form
     {
-        private SeriesCollection SeriesCollection;
-        public CartesianChart Cartesian { get; set; }
-        private List<Registro> registros = new List<Registro>();
+        
+    public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
 
-        public void createSeries()
+        public void chartInit()
         {
+      
+            //To handle live data easily, in this case we built a specialized type
+            //the MeasureModel class, it only contains 2 properties
+            //DateTime and Value
+            //We need to configure LiveCharts to handle MeasureModel class
+            //The next code configures MEasureModel  globally, this means
+            //that livecharts learns to plot MeasureModel and will use this config every time
+            //a ChartValues instance uses this type.
+            //this code ideally should only run once, when application starts is reccomended.
+            //you can configure series in many ways, learn more at http://lvcharts.net/App/examples/v1/wpf/Types%20and%20Configuration
 
-            SeriesCollection = new SeriesCollection
+            var mapper = Mappers.Xy<MeasureModel>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Value);           //use the value property as Y
+
+            //lets save the mapper globally.
+            Charting.For<MeasureModel>(mapper);
+
+            //the ChartValues property will store our values array
+            ChartValues = new ChartValues<MeasureModel>();
+            CartesianChart.Series = new SeriesCollection
             {
                 new LineSeries
                 {
-                    Title = "Zona 1",
-                    Values = new ChartValues<double> { },
-                    LineSmoothness = 0,
-                    PointGeometry = DefaultGeometries.Circle,
-                    PointGeometrySize = 15,
-                    PointForeground = Brushes.Blue,
-                },
-                new LineSeries
-                {
-                    Title = "Zona 2",
-                    Values = new ChartValues<double> { },
-                    LineSmoothness = 0,
-                    PointGeometry = DefaultGeometries.Circle,
-                    PointGeometrySize = 15,
-                    PointForeground = Brushes.Red
-                },
-
-            };           
-            DataContext = this;
-
-            Cartesian.Series = SeriesCollection;
-
-        }
-
-        public void addRegistro(Registro registro) {
-            //modifying any series values will also animate and update the chart
-
-            SeriesCollection.Clear();
-            createSeries();
-
-            registros.Add(registro);
-
-            string[] labels = new string[60];
-            int cont = 0;
-
-            foreach (Registro pos in registros) {
-                SeriesCollection[0].Values.Add(pos.Zona1);
-                SeriesCollection[1].Values.Add(pos.Zona2);
-                string[] cut = pos.DataTime.Split();
-                labels[cont] = cut[1];
-            }
-
-            
-
-            Cartesian.AxisX.Add(new LiveCharts.Wpf.Axis
+                    Values = ChartValues,
+                    PointGeometrySize = 18,
+                    StrokeThickness = 4
+                }
+            };
+            CartesianChart.AxisX.Add(new Axis
             {
-                Title = "Hora",
-                Labels =  labels
+                DisableAnimations = true,
+                LabelFormatter = value => new System.DateTime((long)value).ToString("mm:ss"),
+                Separator = new Separator
+                {
+                    Step = TimeSpan.FromSeconds(1).Ticks
+                }
             });
 
+            SetAxisLimits(System.DateTime.Now);
+
+            //The next code simulates data changes every 500 ms
+            Timer = new Timer
+            {
+                Interval = 500
+            };
+            Timer.Tick += TimerOnTick;
+            R = new Random();
+            Timer.Start();
         }
 
+        public ChartValues<MeasureModel> ChartValues { get; set; }
+        public Timer Timer { get; set; }
+        public Random R { get; set; }
 
+        private void SetAxisLimits(System.DateTime now)
+        {
+            CartesianChart.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 100ms ahead
+            CartesianChart.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(8).Ticks; //we only care about the last 8 seconds
+        }
+
+        private void TimerOnTick(object sender, EventArgs eventArgs)
+        {
+            var now = System.DateTime.Now;
+
+            ChartValues.Add(new MeasureModel
+            {
+                DateTime = now,
+                Value = R.Next(0, 10)
+            });
+
+            SetAxisLimits(now);
+
+            //lets only use the last 30 values
+            if (ChartValues.Count > 30) ChartValues.RemoveAt(0);
+        }
     }
 }
