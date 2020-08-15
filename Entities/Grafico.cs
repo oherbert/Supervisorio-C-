@@ -78,7 +78,7 @@ namespace Arduino_teste2.Entities
             //The next code simulates data changes every 500 ms
             Timer = new Timer
             {
-                Interval = 2000
+                Interval = 300
             };
             Timer.Tick += TimerOnTick;
             R = new Random();
@@ -103,14 +103,14 @@ namespace Arduino_teste2.Entities
             ChartValues1.Add(new Registro
             {
                 DateTime = now,
-                Zona1 = R.Next(150, 157),
-                Zona2 = R.Next(160, 167)
+             //   Zona1 = R.Next(150, 157),
+                Zona2 = R.Next(30, 157)
             });
             
             ChartValues2.Add(new Registro
             {
                 DateTime = now,
-                Zona1 = R.Next(160, 167),
+             //   Zona1 = R.Next(140, 157),
                 Zona2 = R.Next(160, 167)
             });
             
@@ -118,7 +118,7 @@ namespace Arduino_teste2.Entities
 
             //lets only use the last 30 values
             if (ChartValues1.Count > 30) ChartValues1.RemoveAt(0);
-            if (ChartValues2.Count > 30) ChartValues1.RemoveAt(0);
+            if (ChartValues2.Count > 30) ChartValues2.RemoveAt(0);
         }
     }
 }
