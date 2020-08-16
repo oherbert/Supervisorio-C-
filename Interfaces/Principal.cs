@@ -23,7 +23,7 @@ namespace Arduino_teste2
     public partial class Form1 : Form
     {
 
-        Grafico chart = new Grafico();
+        Grafico chart = new Grafico(1);
 
         public Form1()
         {
@@ -33,7 +33,6 @@ namespace Arduino_teste2
         private void Form1_Load(object sender, EventArgs e)
         {
             chart.CartesianChart = cartesianChart;
-            chart.Timer = timer2;
             chart.chartInit(); 
             
         }

@@ -8,45 +8,58 @@ using LiveCharts.Wpf;
 
 namespace Arduino_teste2.Entities
 {
-     class Grafico : Form
+    class Grafico : Form
     {
-        
-    public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
+        // Exlcusiva para a classe Registro
+        public ChartValues<Registro> ChartValues1 { get; set; }
+        public ChartValues<Registro> ChartValues2 { get; set; }
+
+        // 
+        public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
+        public int Intervalo { get; set; } //Em segundos
+        private Timer Timer = new Timer();
+        private Random R = new Random();
+
+        public Grafico()
+        {
+        }
+
+        public Grafico(int intervalo)
+        {
+            Intervalo = intervalo;
+        }
+
+        public Grafico(LiveCharts.Wpf.CartesianChart cartesianChart, int intervalo)
+        {
+            CartesianChart = cartesianChart;
+            Intervalo = intervalo;
+            chartInit();
+        }
+
+
 
         public void chartInit()
         {
 
-            //To handle live data easily, in this case we built a specialized type
-            //the MeasureModel class, it only contains 2 properties
-            //DateTime and Value
-            //We need to configure LiveCharts to handle MeasureModel class
-            //The next code configures MEasureModel  globally, this means
-            //that livecharts learns to plot MeasureModel and will use this config every time
-            //a ChartValues instance uses this type.
-            //this code ideally should only run once, when application starts is reccomended.
-            //you can configure series in many ways, learn more at http://lvcharts.net/App/examples/v1/wpf/Types%20and%20Configuration
-
             var mapper1 = Mappers.Xy<Registro>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
-                .Y(model => model.Zona1);        //use the value property as Y
-                
+                .Y(model => model.Valor);        //use the value property as Y
 
-            var mapper2 = Mappers.Xy<Registro>()
-                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
-                .Y(model => model.Zona2);          //use the value property as Y
-
-            //lets save the mapper globally.
             Charting.For<Registro>(mapper1);
-            
-            //the ChartValues property will store our values array
             ChartValues1 = new ChartValues<Registro>();
-            
-            LineSeries line1 = new LineSeries {
+
+            LineSeries line1 = new LineSeries
+            {
                 Title = "Zona 1",
                 Values = ChartValues1,
                 PointGeometrySize = 18,
                 StrokeThickness = 4
             };
+
+
+            var mapper2 = Mappers.Xy<Registro>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Valor);          //use the value property as Y
 
             Charting.For<Registro>(mapper2);
             ChartValues2 = new ChartValues<Registro>();
@@ -59,10 +72,10 @@ namespace Arduino_teste2.Entities
                 StrokeThickness = 4
             };
 
-                      
+            LineSeries[] lineSeries = new LineSeries[] { line1, line2 };
 
-            CartesianChart.Series = new SeriesCollection{ line1,line2 };
 
+            CartesianChart.Series = new SeriesCollection { line1, line2};
             CartesianChart.AxisX.Add(new Axis
             {
                 DisableAnimations = true,
@@ -75,20 +88,14 @@ namespace Arduino_teste2.Entities
 
             SetAxisLimits(DateTime.Now);
 
-            //The next code simulates data changes every 500 ms
+            //The next code create data changes 
             Timer = new Timer
             {
-                Interval = 300
+                Interval = (Intervalo * 1000)
             };
             Timer.Tick += TimerOnTick;
-            R = new Random();
             Timer.Start();
         }
-
-        public ChartValues<Registro> ChartValues1 { get; set; }
-        public ChartValues<Registro> ChartValues2 { get; set; }
-        public Timer Timer { get; set; }
-        public Random R { get; set; }
 
         private void SetAxisLimits(DateTime now)
         {
@@ -103,22 +110,59 @@ namespace Arduino_teste2.Entities
             ChartValues1.Add(new Registro
             {
                 DateTime = now,
-             //   Zona1 = R.Next(150, 157),
-                Zona2 = R.Next(30, 157)
+                Valor = R.Next(0, 157)
             });
-            
+
             ChartValues2.Add(new Registro
             {
                 DateTime = now,
-             //   Zona1 = R.Next(140, 157),
-                Zona2 = R.Next(160, 167)
+                Valor = R.Next(160, 167)
             });
-            
+
             SetAxisLimits(now);
 
             //lets only use the last 30 values
             if (ChartValues1.Count > 30) ChartValues1.RemoveAt(0);
             if (ChartValues2.Count > 30) ChartValues2.RemoveAt(0);
+        }
+
+        private LineSeries[] CreateLines() {
+            
+           
+            var mapper1 = Mappers.Xy<Registro>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Valor);        //use the value property as Y
+
+            Charting.For<Registro>(mapper1);
+            ChartValues1 = new ChartValues<Registro>();
+
+            LineSeries line1 = new LineSeries
+            {
+                Title = "Zona 1",
+                Values = ChartValues1,
+                PointGeometrySize = 18,
+                StrokeThickness = 4
+            };
+
+
+            var mapper2 = Mappers.Xy<Registro>()
+                .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
+                .Y(model => model.Valor);          //use the value property as Y
+
+            Charting.For<Registro>(mapper2);
+            ChartValues2 = new ChartValues<Registro>();
+
+            LineSeries line2 = new LineSeries()
+            {
+                Title = "Zona 2",
+                Values = ChartValues2,
+                PointGeometrySize = 18,
+                StrokeThickness = 4
+            };
+
+            LineSeries[] lineSeries = new LineSeries[] { line1, line2 };
+
+            return lineSeries;
         }
     }
 }
