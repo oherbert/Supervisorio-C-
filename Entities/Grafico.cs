@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using LiveCharts;
 using LiveCharts.Configurations;
@@ -40,7 +41,7 @@ namespace Arduino_teste2.Entities
 
         public void chartInit()
         {
-
+            /*
             var mapper1 = Mappers.Xy<Registro>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Valor);        //use the value property as Y
@@ -72,19 +73,30 @@ namespace Arduino_teste2.Entities
                 StrokeThickness = 4
             };
 
-            LineSeries[] lineSeries = new LineSeries[] { line1, line2 };
+            
+            */
+            List<LineSeries> lines = new List<LineSeries>();
+            addLine(lines);
 
 
-            CartesianChart.Series = new SeriesCollection { line1, line2};
-            CartesianChart.AxisX.Add(new Axis
+
+            foreach (LineSeries line in lines)
             {
-                DisableAnimations = true,
-                LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
-                Separator = new Separator
+                CartesianChart.Series.Add(line);// = new SeriesCollection {line }; //line1, line2
+            }
+                
+                CartesianChart.AxisX.Add(new Axis
                 {
-                    Step = TimeSpan.FromSeconds(1).Ticks
-                }
-            });
+                    DisableAnimations = true,
+                    LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
+                    Separator = new Separator
+                    {
+                        Step = TimeSpan.FromSeconds(1).Ticks
+                    }
+                });
+
+                
+            
 
             SetAxisLimits(DateTime.Now);
 
@@ -126,7 +138,7 @@ namespace Arduino_teste2.Entities
             if (ChartValues2.Count > 30) ChartValues2.RemoveAt(0);
         }
 
-        private LineSeries[] CreateLines() {
+        private void addLine (List<LineSeries> lines) {
             
            
             var mapper1 = Mappers.Xy<Registro>()
@@ -160,9 +172,12 @@ namespace Arduino_teste2.Entities
                 StrokeThickness = 4
             };
 
-            LineSeries[] lineSeries = new LineSeries[] { line1, line2 };
 
-            return lineSeries;
+            lines.Add(line1);
+            lines.Add(line2);
+            
         }
+
+        
     }
 }

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Arduino_teste2.Utils
 {
-    class SerialControl
+    class ConversorEntradaSerial
     {
         public static List<Registro> GetRegistros(string serial) {
 

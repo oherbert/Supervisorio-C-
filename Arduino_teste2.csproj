@@ -81,7 +81,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Arduino.cs" />
-    <Compile Include="Utils\SerialControl.cs" />
+    <Compile Include="Utils\ConversorEntradaSerial.cs" />
     <Compile Include="Utils\Regex.cs" />
     <EmbeddedResource Include="Interfaces\Offsets.resx">
       <DependentUpon>Offsets.cs</DependentUpon>
