@@ -1,4 +1,5 @@
 ﻿using Arduino_teste2.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -6,20 +7,37 @@ namespace Arduino_teste2.Utils
 {
     class ConversorEntradaSerial
     {
-        public static List<Registro> GetRegistros(string serial) {
+        public static List<Registro> getRegistros(string serial) {
+
+
+            serial = "{Zona1=100,Zona2=300}";
+
+            List<Registro> registros = new List<Registro>();
+            DateTime now = DateTime.Now;
 
             if (serial.Contains("{") && serial.Contains("}")) {
-                string str = serial.Replace('{', ' ');
-                str = str.Replace('}', ' ');
-                str = str.Trim();
-                string[] vs =  serial.Split(',');
+
+                string padrao = @"[\W]";
+                string[] array = System.Text.RegularExpressions.Regex.Split(serial,padrao);
 
 
+                for (int i = 0; i < array.Length; i++) {
+                    if (array[i] != "")
+                    {
+                        registros.Add(new Registro(now, array[i], Convert.ToDouble(array[i + 1])));
+                        i++;
+                    }
+                }
+                
+
+
+                
             }
 
-            List<Registro> list = new List<Registro>();
 
-            return (list);
+            registros.ForEach(x=> Console.WriteLine(x));
+
+            return (registros);
                 
 
 

@@ -33,8 +33,8 @@ namespace Arduino_teste2
         private void Form1_Load(object sender, EventArgs e)
         {
             chart.CartesianChart = cartesianChart;
-            chart.chartInit(); 
-            
+            chart.chartInit();
+            ConversorEntradaSerial.getRegistros("");
         }
 
 
