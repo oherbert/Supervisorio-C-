@@ -10,8 +10,6 @@ namespace Arduino_teste2.Utils
         public static List<Registro> getRegistros(string serial) {
 
 
-            serial = "{Zona1=100,Zona2=300}";
-
             List<Registro> registros = new List<Registro>();
             DateTime now = DateTime.Now;
 
@@ -22,15 +20,12 @@ namespace Arduino_teste2.Utils
 
 
                 for (int i = 0; i < array.Length; i++) {
-                    if (array[i] != "")
+                    if (array[i].Contains("Zona"))
                     {
                         registros.Add(new Registro(now, array[i], Convert.ToDouble(array[i + 1])));
                         i++;
                     }
-                }
-                
-
-
+                }               
                 
             }
 

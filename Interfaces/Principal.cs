@@ -34,7 +34,7 @@ namespace Arduino_teste2
         {
             chart.CartesianChart = cartesianChart;
             chart.chartInit();
-            ConversorEntradaSerial.getRegistros("");
+            ConversorEntradaSerial.getRegistros("{Zona1=100,Zona2=200}");
         }
 
 

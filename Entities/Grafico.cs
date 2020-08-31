@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Arduino_teste2.Utils;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.WinForms;
@@ -11,19 +12,18 @@ namespace Arduino_teste2.Entities
 {
     class Grafico : Form
     {
-        // Exlcusiva para a classe Registro editar o numero de pontos
-
-        private static String[] pontosGrafico = { "Zona 1", "Zona 2", "Zona 3", "Zona 4" };
-
-        private ChartValues<Registro>[] chartValues = new ChartValues<Registro>[pontosGrafico.Length];
-        
 
         // Geral
         public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
         public int Intervalo { get; set; } //Em segundos
         private Timer Timer = new Timer();
-        private Random R = new Random();
+        private static Random R = new Random();
 
+        // Exlcusiva para a classe Registro editar o numero de pontos
+        private static List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1="+R.Next(0,150) + ",Zona2=" + R.Next(25, 150) +", Zona3=300}");
+
+        private ChartValues<Registro>[] chartValues = new ChartValues<Registro>[registros.Count];
+        
         public Grafico()
         {
         }
@@ -47,8 +47,8 @@ namespace Arduino_teste2.Entities
             
             List<LineSeries> lines = new List<LineSeries>();
 
-            foreach (String ponto in pontosGrafico) {
-                addLine(lines, ponto);
+            foreach (Registro registro in registros) {
+                addLine(lines, registro.Nome);
             }
 
             foreach (LineSeries line in lines)
@@ -111,7 +111,6 @@ namespace Arduino_teste2.Entities
 
         private void addLine (List<LineSeries> lines, string titulo) {
             
-           
             var mapper1 = Mappers.Xy<Registro>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Valor);        //use the value property as Y
