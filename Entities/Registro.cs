@@ -10,7 +10,8 @@ namespace Arduino_teste2.Entities
         public double Valor { get; set; }
 
 
-        public Registro(DateTime dateTime, string nome, double valor) {
+        public Registro(DateTime dateTime, string nome, double valor)
+        {
             DateTime = dateTime;
             Nome = nome;
             Valor = valor;

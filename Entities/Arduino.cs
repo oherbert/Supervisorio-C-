@@ -16,31 +16,31 @@ namespace Arduino_teste2.Entities
 
 
         public static void tryOpenPort()
-    {
-           
-        if (SerialPort.IsOpen == false)
         {
-            SerialPort.PortName = PortCom; 
-            SerialPort.BaudRate = 9600;
-            SerialPort.ReadTimeout = 1200;
-            SerialPort.WriteTimeout = 1200;
-            try
-            {
-                SerialPort.Open();
-                if (Reading.IsAlive == false)
-                Reading.Start();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Não foi possivel encontrar o arduino na porta selecionada: "+ PortCom);
-            }
 
-            if (SerialPort.IsOpen == true)
-                StreamCom = "Aberta";
-            else
-                StreamCom = "Fechada";
+            if (SerialPort.IsOpen == false)
+            {
+                SerialPort.PortName = PortCom;
+                SerialPort.BaudRate = 9600;
+                SerialPort.ReadTimeout = 1200;
+                SerialPort.WriteTimeout = 1200;
+                try
+                {
+                    SerialPort.Open();
+                    if (Reading.IsAlive == false)
+                        Reading.Start();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Não foi possivel encontrar o arduino na porta selecionada: " + PortCom);
+                }
+
+                if (SerialPort.IsOpen == true)
+                    StreamCom = "Aberta";
+                else
+                    StreamCom = "Fechada";
+            }
         }
-    }
 
         public static void close()
         {
@@ -51,9 +51,9 @@ namespace Arduino_teste2.Entities
         }
 
         private static void Read()
-    {
-            while (true)
         {
+            while (true)
+            {
                 if (SerialPort.IsOpen == true)
                 {
                     try
@@ -63,7 +63,7 @@ namespace Arduino_teste2.Entities
                     }
                     catch (TimeoutException e)
                     {
-                        Console.WriteLine("Arduino não envia dados: " + e.StackTrace); 
+                        Console.WriteLine("Arduino não envia dados: " + e.StackTrace);
                     }
                     Thread.Sleep(1000);
                 }
@@ -73,13 +73,12 @@ namespace Arduino_teste2.Entities
                     Console.WriteLine("Porta fechada");
                     StreamCom = "Fechada";
                 }
+            }
+
+
         }
 
-            
+
     }
-
-
-}
 }
 
- 

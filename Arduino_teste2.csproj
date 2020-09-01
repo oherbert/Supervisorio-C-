@@ -66,16 +66,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Entities\Registro.cs" />
-    <Compile Include="Interfaces\Offsets.cs">
+    <Compile Include="Views\Offsets.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaces\Offsets.Designer.cs">
+    <Compile Include="Views\Offsets.Designer.cs">
       <DependentUpon>Offsets.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Principal.cs">
+    <Compile Include="Views\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaces\Principal.Designer.cs">
+    <Compile Include="Views\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -83,10 +83,10 @@
     <Compile Include="Entities\Arduino.cs" />
     <Compile Include="Utils\ConversorEntradaSerial.cs" />
     <Compile Include="Utils\Regex.cs" />
-    <EmbeddedResource Include="Interfaces\Offsets.resx">
+    <EmbeddedResource Include="Views\Offsets.resx">
       <DependentUpon>Offsets.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interfaces\Principal.resx">
+    <EmbeddedResource Include="Views\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -20,10 +20,10 @@ namespace Arduino_teste2.Entities
         private static Random R = new Random();
 
         // Exlcusiva para a classe Registro editar o numero de pontos
-        private static List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1="+R.Next(0,150) + ",Zona2=" + R.Next(25, 150) +", Zona3=300}");
+        private static List<Registro> registros;
 
-        private ChartValues<Registro>[] chartValues = new ChartValues<Registro>[registros.Count];
-        
+        private ChartValues<Registro>[] chartValues;
+
         public Grafico()
         {
         }
@@ -31,6 +31,9 @@ namespace Arduino_teste2.Entities
         public Grafico(int intervalo)
         {
             Intervalo = intervalo;
+            registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=300}");
+            chartValues = new ChartValues<Registro>[registros.Count];
+
         }
 
         public Grafico(LiveCharts.Wpf.CartesianChart cartesianChart, int intervalo)
@@ -44,10 +47,11 @@ namespace Arduino_teste2.Entities
 
         public void chartInit()
         {
-            
+
             List<LineSeries> lines = new List<LineSeries>();
 
-            foreach (Registro registro in registros) {
+            foreach (Registro registro in registros)
+            {
                 addLine(lines, registro.Nome);
             }
 
@@ -55,20 +59,20 @@ namespace Arduino_teste2.Entities
             {
                 CartesianChart.Series.Add(line);
             }
-                
-                CartesianChart.AxisX.Add(new Axis
-                {
-                    DisableAnimations = true,
-                    LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
-                    Separator = new Separator
-                    {
-                        Step = TimeSpan.FromSeconds(1).Ticks
-                    }
-                });
 
-               
+            CartesianChart.AxisX.Add(new Axis
+            {
+                DisableAnimations = true,
+                LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
+                Separator = new Separator
+                {
+                    Step = TimeSpan.FromSeconds(1).Ticks
+                }
+            });
+
+
             SetAxisLimits(DateTime.Now);
-            
+
             //The next code create data changes 
             Timer = new Timer
             {
@@ -87,8 +91,9 @@ namespace Arduino_teste2.Entities
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
             var now = DateTime.Now;
-            
-            foreach (ChartValues<Registro> chart in chartValues) { 
+
+            foreach (ChartValues<Registro> chart in chartValues)
+            {
                 chart.Add(new Registro
                 {
                     DateTime = now,
@@ -106,11 +111,12 @@ namespace Arduino_teste2.Entities
             }
 
 
-            
+
         }
 
-        private void addLine (List<LineSeries> lines, string titulo) {
-            
+        private void addLine(List<LineSeries> lines, string titulo)
+        {
+
             var mapper1 = Mappers.Xy<Registro>()
                 .X(model => model.DateTime.Ticks)   //use DateTime.Ticks as X
                 .Y(model => model.Valor);        //use the value property as Y
@@ -127,10 +133,10 @@ namespace Arduino_teste2.Entities
                 StrokeThickness = 4
             };
 
-            lines.Add(line);         
-            
+            lines.Add(line);
+
         }
 
-        
+
     }
 }

@@ -19,7 +19,7 @@ using System.Windows.Media;
 using Arduino_teste2.Entities;
 
 namespace Arduino_teste2
-{   
+{
     public partial class Form1 : Form
     {
 
@@ -126,10 +126,11 @@ namespace Arduino_teste2
             {
                 lblCom.Text = Arduino.StreamCom;
             }
-            else if (Arduino.StreamCom == "Fechada" )
+            else if (Arduino.StreamCom == "Fechada")
             {
                 lblCom.Text = "Porta fechada";
-                conectarMenu.Enabled = true;
+                conectarMenu.Enabled = true;                
+
                 com1Menu.Enabled = true;
                 com2Menu.Enabled = true;
                 com3Menu.Enabled = true;
@@ -140,7 +141,7 @@ namespace Arduino_teste2
                 com8Menu.Enabled = true;
                 com9Menu.Enabled = true;
                 timer1.Stop();
-                
+
             }
         }
 
@@ -163,7 +164,7 @@ namespace Arduino_teste2
             com9Menu.Checked = false;
 
 
-            switch (Arduino.PortCom) 
+            switch (Arduino.PortCom)
             {
                 case "COM1":
                     com1Menu.Checked = true;
@@ -200,12 +201,12 @@ namespace Arduino_teste2
             Arduino.close();
             Application.ExitThread();
             Environment.Exit(0);
-            
+
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-              
+
         }
     }
 }
