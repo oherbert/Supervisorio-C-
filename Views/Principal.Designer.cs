@@ -36,22 +36,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblCom = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.principalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.históricoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajustesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comunicaçãoMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com1Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com2Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com3Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com4Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com5Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com6Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com7Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com8Menu = new System.Windows.Forms.ToolStripMenuItem();
-            this.com9Menu = new System.Windows.Forms.ToolStripMenuItem();
             this.conectarMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.desconectarMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +52,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -112,9 +103,9 @@
             this.icbt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.icbt1.Location = new System.Drawing.Point(13, 5);
             this.icbt1.Name = "icbt1";
-            this.icbt1.Size = new System.Drawing.Size(83, 20);
+            this.icbt1.Size = new System.Drawing.Size(64, 20);
             this.icbt1.TabIndex = 1;
-            this.icbt1.Text = "Maquina 1";
+            this.icbt1.Text = "Forno 1";
             this.icbt1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -147,18 +138,18 @@
             this.lblCom.TabIndex = 0;
             this.lblCom.Text = "label1";
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.principalToolStripMenuItem,
             this.ajustesToolStripMenuItem,
             this.configuraçãoToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1292, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1292, 24);
+            this.menuStrip.TabIndex = 4;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // principalToolStripMenuItem
             // 
@@ -201,95 +192,22 @@
             // 
             // comunicaçãoMenu
             // 
-            this.comunicaçãoMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.com1Menu,
-            this.com2Menu,
-            this.com3Menu,
-            this.com4Menu,
-            this.com5Menu,
-            this.com6Menu,
-            this.com7Menu,
-            this.com8Menu,
-            this.com9Menu});
             this.comunicaçãoMenu.Name = "comunicaçãoMenu";
-            this.comunicaçãoMenu.Size = new System.Drawing.Size(148, 22);
+            this.comunicaçãoMenu.Size = new System.Drawing.Size(180, 22);
             this.comunicaçãoMenu.Text = "Comunicação";
             this.comunicaçãoMenu.MouseEnter += new System.EventHandler(this.comunicaçãoMenu_MouseEnter);
-            // 
-            // com1Menu
-            // 
-            this.com1Menu.Name = "com1Menu";
-            this.com1Menu.Size = new System.Drawing.Size(108, 22);
-            this.com1Menu.Text = "COM1";
-            this.com1Menu.Click += new System.EventHandler(this.com1Menu_Click);
-            // 
-            // com2Menu
-            // 
-            this.com2Menu.Name = "com2Menu";
-            this.com2Menu.Size = new System.Drawing.Size(108, 22);
-            this.com2Menu.Text = "COM2";
-            this.com2Menu.Click += new System.EventHandler(this.com2Menu_Click);
-            // 
-            // com3Menu
-            // 
-            this.com3Menu.Name = "com3Menu";
-            this.com3Menu.Size = new System.Drawing.Size(108, 22);
-            this.com3Menu.Text = "COM3";
-            this.com3Menu.Click += new System.EventHandler(this.com3Menu_Click);
-            // 
-            // com4Menu
-            // 
-            this.com4Menu.Name = "com4Menu";
-            this.com4Menu.Size = new System.Drawing.Size(108, 22);
-            this.com4Menu.Text = "COM4";
-            this.com4Menu.Click += new System.EventHandler(this.com4Menu_Click);
-            // 
-            // com5Menu
-            // 
-            this.com5Menu.Name = "com5Menu";
-            this.com5Menu.Size = new System.Drawing.Size(108, 22);
-            this.com5Menu.Text = "COM5";
-            this.com5Menu.Click += new System.EventHandler(this.com5Menu_Click);
-            // 
-            // com6Menu
-            // 
-            this.com6Menu.Name = "com6Menu";
-            this.com6Menu.Size = new System.Drawing.Size(108, 22);
-            this.com6Menu.Text = "COM6";
-            this.com6Menu.Click += new System.EventHandler(this.com6Menu_Click);
-            // 
-            // com7Menu
-            // 
-            this.com7Menu.Name = "com7Menu";
-            this.com7Menu.Size = new System.Drawing.Size(108, 22);
-            this.com7Menu.Text = "COM7";
-            this.com7Menu.Click += new System.EventHandler(this.com7Menu_Click);
-            // 
-            // com8Menu
-            // 
-            this.com8Menu.Name = "com8Menu";
-            this.com8Menu.Size = new System.Drawing.Size(108, 22);
-            this.com8Menu.Text = "COM8";
-            this.com8Menu.Click += new System.EventHandler(this.com8Menu_Click);
-            // 
-            // com9Menu
-            // 
-            this.com9Menu.Name = "com9Menu";
-            this.com9Menu.Size = new System.Drawing.Size(108, 22);
-            this.com9Menu.Text = "COM9";
-            this.com9Menu.Click += new System.EventHandler(this.com9Menu_Click);
             // 
             // conectarMenu
             // 
             this.conectarMenu.Name = "conectarMenu";
-            this.conectarMenu.Size = new System.Drawing.Size(148, 22);
+            this.conectarMenu.Size = new System.Drawing.Size(180, 22);
             this.conectarMenu.Text = "Conectar";
             this.conectarMenu.Click += new System.EventHandler(this.conectarMenu_Click);
             // 
             // desconectarMenu
             // 
             this.desconectarMenu.Name = "desconectarMenu";
-            this.desconectarMenu.Size = new System.Drawing.Size(148, 22);
+            this.desconectarMenu.Size = new System.Drawing.Size(180, 22);
             this.desconectarMenu.Text = "Desconectar";
             this.desconectarMenu.Click += new System.EventHandler(this.desconectarMenu_Click);
             // 
@@ -317,7 +235,6 @@
             // 
             this.timer2.Enabled = true;
             this.timer2.Interval = 3000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
@@ -326,8 +243,8 @@
             this.ClientSize = new System.Drawing.Size(1292, 730);
             this.Controls.Add(this.chartPrincipal);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -335,8 +252,8 @@
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,7 +264,7 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem principalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem históricoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajustesToolStripMenuItem;
@@ -356,15 +273,6 @@
         private System.Windows.Forms.ToolStripMenuItem comunicaçãoMenu;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem com1Menu;
-        private System.Windows.Forms.ToolStripMenuItem com2Menu;
-        private System.Windows.Forms.ToolStripMenuItem com3Menu;
-        private System.Windows.Forms.ToolStripMenuItem com4Menu;
-        private System.Windows.Forms.ToolStripMenuItem com5Menu;
-        private System.Windows.Forms.ToolStripMenuItem com6Menu;
-        private System.Windows.Forms.ToolStripMenuItem com7Menu;
-        private System.Windows.Forms.ToolStripMenuItem com8Menu;
-        private System.Windows.Forms.ToolStripMenuItem com9Menu;
         private System.Windows.Forms.ToolStripMenuItem conectarMenu;
         private System.Windows.Forms.ToolStripMenuItem desconectarMenu;
         private System.Windows.Forms.Label lblCom;

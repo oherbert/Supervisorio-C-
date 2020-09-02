@@ -21,5 +21,7 @@ namespace Arduino_teste2.Interfaces
         {
             MessageBox.Show(txtOffSec1.Text + "\n" + txtOffVul1.Text) ;
         }
+
+        
     }
 }
