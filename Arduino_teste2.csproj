@@ -62,9 +62,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Grafico.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Entities\Grafico.cs" />
     <Compile Include="Entities\Registro.cs" />
     <Compile Include="Views\Offsets.cs">
       <SubType>Form</SubType>

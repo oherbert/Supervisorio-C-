@@ -193,21 +193,21 @@
             // comunicaçãoMenu
             // 
             this.comunicaçãoMenu.Name = "comunicaçãoMenu";
-            this.comunicaçãoMenu.Size = new System.Drawing.Size(180, 22);
+            this.comunicaçãoMenu.Size = new System.Drawing.Size(148, 22);
             this.comunicaçãoMenu.Text = "Comunicação";
             this.comunicaçãoMenu.MouseEnter += new System.EventHandler(this.comunicaçãoMenu_MouseEnter);
             // 
             // conectarMenu
             // 
             this.conectarMenu.Name = "conectarMenu";
-            this.conectarMenu.Size = new System.Drawing.Size(180, 22);
+            this.conectarMenu.Size = new System.Drawing.Size(148, 22);
             this.conectarMenu.Text = "Conectar";
             this.conectarMenu.Click += new System.EventHandler(this.conectarMenu_Click);
             // 
             // desconectarMenu
             // 
             this.desconectarMenu.Name = "desconectarMenu";
-            this.desconectarMenu.Size = new System.Drawing.Size(180, 22);
+            this.desconectarMenu.Size = new System.Drawing.Size(148, 22);
             this.desconectarMenu.Text = "Desconectar";
             this.desconectarMenu.Click += new System.EventHandler(this.desconectarMenu_Click);
             // 
@@ -235,6 +235,7 @@
             // 
             this.timer2.Enabled = true;
             this.timer2.Interval = 3000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 

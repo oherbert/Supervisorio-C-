@@ -1,7 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Arduino_teste2.Utils;
 using LiveCharts;
 using LiveCharts.Configurations;
@@ -10,37 +12,31 @@ using LiveCharts.Wpf;
 
 namespace Arduino_teste2.Entities
 {
-    class Grafico : Form
+    class Grafico
     {
 
         // Geral
         public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
-        public int Intervalo { get; set; } //Em segundos
-        private Timer Timer = new Timer();
         private static Random R = new Random();
 
         // Exlcusiva para a classe Registro editar o numero de pontos
-        private static List<Registro> registros;
+        //  private static List<Registro> registros;
 
-        private ChartValues<Registro>[] chartValues;
+        // private ChartValues<Registro>[] chartValues;
+
+        public List<RegistroGrafico> registroGraficos = new List<RegistroGrafico>();
 
         public Grafico()
         {
-        }
+            List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=300}");
+            //chartValues = new ChartValues<Registro>[registros.Count];
 
-        public Grafico(int intervalo)
-        {
-            Intervalo = intervalo;
-            registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=300}");
-            chartValues = new ChartValues<Registro>[registros.Count];
-
-        }
-
-        public Grafico(LiveCharts.Wpf.CartesianChart cartesianChart, int intervalo)
-        {
-            CartesianChart = cartesianChart;
-            Intervalo = intervalo;
-            chartInit();
+            foreach (Registro registro in registros) 
+            {
+                ChartValues<Registro> registros1 = null;
+                registroGraficos.Add(new RegistroGrafico(registro, registros1));
+            }
+            
         }
 
 
@@ -50,9 +46,9 @@ namespace Arduino_teste2.Entities
 
             List<LineSeries> lines = new List<LineSeries>();
 
-            foreach (Registro registro in registros)
+            foreach (RegistroGrafico registroG in registroGraficos)
             {
-                addLine(lines, registro.Nome);
+                addLine(lines, registroG.Registro.Nome) ;
             }
 
             foreach (LineSeries line in lines)
@@ -60,7 +56,7 @@ namespace Arduino_teste2.Entities
                 CartesianChart.Series.Add(line);
             }
 
-            CartesianChart.AxisX.Add(new Axis
+            CartesianChart.AxisX.Add(new LiveCharts.Wpf.Axis
             {
                 DisableAnimations = true,
                 LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
@@ -73,45 +69,44 @@ namespace Arduino_teste2.Entities
 
             SetAxisLimits(DateTime.Now);
 
-            //The next code create data changes 
-            Timer = new Timer
-            {
-                Interval = (Intervalo * 1000)
-            };
-            Timer.Tick += TimerOnTick;
-            Timer.Start();
+            atualizaGrafico();
         }
 
-        private void SetAxisLimits(DateTime now)
-        {
-            CartesianChart.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 100ms ahead
-            CartesianChart.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(8).Ticks; //we only care about the last 8 seconds
-        }
-
-        private void TimerOnTick(object sender, EventArgs eventArgs)
+        public void atualizaGrafico()
         {
             var now = DateTime.Now;
 
-            foreach (ChartValues<Registro> chart in chartValues)
-            {
-                chart.Add(new Registro
-                {
-                    DateTime = now,
-                    Valor = R.Next(0, 157)
-                });
+            List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=160}");
+            
+
+            foreach (RegistroGrafico rg in registroGraficos) {
+
+                foreach (Registro registro in registros) {
+                    if (rg.Registro.Nome == registro.Nome) {
+                        rg.Registro = registro;
+                    }
+                }
+
+                rg.ChartVal.Add( rg.Registro);
+
             }
 
             SetAxisLimits(now);
 
             //lets only use the last 30 values
 
-            foreach (ChartValues<Registro> chart in chartValues)
+            foreach (RegistroGrafico rG in registroGraficos)
             {
-                if (chart.Count > 30) chart.RemoveAt(0);
+                if (rG.ChartVal.Count > 30) rG.ChartVal.RemoveAt(0);
             }
 
 
+        }
 
+        private void SetAxisLimits(DateTime now)
+        {
+            CartesianChart.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 100ms ahead
+            CartesianChart.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(8).Ticks; //we only care about the last 8 seconds
         }
 
         private void addLine(List<LineSeries> lines, string titulo)
@@ -122,13 +117,24 @@ namespace Arduino_teste2.Entities
                 .Y(model => model.Valor);        //use the value property as Y
 
             Charting.For<Registro>(mapper1);
-            chartValues[lines.Count] = new ChartValues<Registro>();
+            //chartValues[lines.Count] = new ChartValues<Registro>();
+            ChartValues<Registro> chart = new ChartValues<Registro>();
 
+
+            foreach (RegistroGrafico rg in registroGraficos) {
+
+                if (rg.ChartVal == null) {
+                    rg.ChartVal = chart;
+                    break;
+                }
+            }
+
+            
 
             LineSeries line = new LineSeries
             {
                 Title = titulo,
-                Values = chartValues[lines.Count],
+                Values = chart,
                 PointGeometrySize = 18,
                 StrokeThickness = 4
             };
@@ -137,6 +143,18 @@ namespace Arduino_teste2.Entities
 
         }
 
+
+    }
+
+    class RegistroGrafico {
+
+        public Registro Registro { get; set; }
+        public ChartValues<Registro> ChartVal { get; set; }
+
+        public RegistroGrafico(Registro registro, ChartValues<Registro> chartRegistro) {
+            Registro = registro;
+            ChartVal = chartRegistro;
+        }
 
     }
 }

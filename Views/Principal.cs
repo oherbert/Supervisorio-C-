@@ -11,7 +11,7 @@ namespace Arduino_teste2
     public partial class Form1 : Form
     {
         private List<ToolStripMenuItem> menusCom;
-        Grafico chart = new Grafico(1);
+        Grafico chart = new Grafico();
 
         public Form1()
         {
@@ -124,5 +124,9 @@ namespace Arduino_teste2
 
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            chart.atualizaGrafico();
+        }
     }
 }
