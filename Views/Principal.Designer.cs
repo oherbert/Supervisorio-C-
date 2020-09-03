@@ -147,7 +147,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1292, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1353, 24);
             this.menuStrip.TabIndex = 4;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -224,9 +224,10 @@
             // 
             // chartPrincipal
             // 
+            this.chartPrincipal.BackColor = System.Drawing.SystemColors.Window;
             this.chartPrincipal.Location = new System.Drawing.Point(236, 38);
             this.chartPrincipal.Name = "chartPrincipal";
-            this.chartPrincipal.Size = new System.Drawing.Size(1044, 657);
+            this.chartPrincipal.Size = new System.Drawing.Size(1105, 657);
             this.chartPrincipal.TabIndex = 5;
             this.chartPrincipal.Text = "elementHost1";
             this.chartPrincipal.Child = this.cartesianChart;
@@ -234,14 +235,14 @@
             // timer2
             // 
             this.timer2.Enabled = true;
-            this.timer2.Interval = 3000;
+            this.timer2.Interval = 60000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1292, 730);
+            this.ClientSize = new System.Drawing.Size(1353, 730);
             this.Controls.Add(this.chartPrincipal);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);

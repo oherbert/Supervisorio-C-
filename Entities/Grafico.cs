@@ -18,12 +18,8 @@ namespace Arduino_teste2.Entities
         // Geral
         public LiveCharts.Wpf.CartesianChart CartesianChart { get; set; }
         private static Random R = new Random();
-
-        // Exlcusiva para a classe Registro editar o numero de pontos
-        //  private static List<Registro> registros;
-
-        // private ChartValues<Registro>[] chartValues;
-
+        public long NumeroAtualizacoes = 0L;
+        // Exlcusiva para a classe Registro e
         public List<RegistroGrafico> registroGraficos = new List<RegistroGrafico>();
 
         public Grafico()
@@ -31,14 +27,13 @@ namespace Arduino_teste2.Entities
             List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=300}");
             //chartValues = new ChartValues<Registro>[registros.Count];
 
-            foreach (Registro registro in registros) 
+            foreach (Registro registro in registros)
             {
                 ChartValues<Registro> registros1 = null;
                 registroGraficos.Add(new RegistroGrafico(registro, registros1));
             }
-            
-        }
 
+        }
 
 
         public void chartInit()
@@ -48,7 +43,7 @@ namespace Arduino_teste2.Entities
 
             foreach (RegistroGrafico registroG in registroGraficos)
             {
-                addLine(lines, registroG.Registro.Nome) ;
+                addLine(lines, registroG.Registro.Nome);
             }
 
             foreach (LineSeries line in lines)
@@ -62,10 +57,9 @@ namespace Arduino_teste2.Entities
                 LabelFormatter = value => new DateTime((long)value).ToString("HH:mm:ss"),
                 Separator = new Separator
                 {
-                    Step = TimeSpan.FromSeconds(1).Ticks
+                    Step = TimeSpan.FromMinutes(1).Ticks
                 }
             });
-
 
             SetAxisLimits(DateTime.Now);
 
@@ -76,18 +70,34 @@ namespace Arduino_teste2.Entities
         {
             var now = DateTime.Now;
 
-            List<Registro> registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(0, 150) + ",Zona2=" + R.Next(25, 150) + ", Zona3=160}");
-            
+            List<Registro> registros;
 
-            foreach (RegistroGrafico rg in registroGraficos) {
+            if (NumeroAtualizacoes == 0)
+            {
+                registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(25, 150) + ",Zona2=" + R.Next(25, 180) + ", Zona3=170}");
+            }
+            else
+                registros = ConversorEntradaSerial.getRegistros("{Zona1=" + R.Next(25, 150) + ",Zona2=" + R.Next(25, 180) + ", Zona3=" + R.Next(25, 150) + "}");
 
-                foreach (Registro registro in registros) {
-                    if (rg.Registro.Nome == registro.Nome) {
+            foreach (RegistroGrafico rg in registroGraficos)
+            {
+
+                foreach (Registro registro in registros)
+                {
+                    if (rg.Registro.Nome == registro.Nome)
+                    {
                         rg.Registro = registro;
+                        break;
                     }
+                    else
+                        rg.Registro = new Registro(rg.Registro.Nome, double.NaN);
                 }
 
-                rg.ChartVal.Add( rg.Registro);
+                if (rg != null)
+                {
+                    rg.ChartVal.Add(rg.Registro);
+                    NumeroAtualizacoes++;
+                }
 
             }
 
@@ -99,14 +109,12 @@ namespace Arduino_teste2.Entities
             {
                 if (rG.ChartVal.Count > 30) rG.ChartVal.RemoveAt(0);
             }
-
-
         }
 
         private void SetAxisLimits(DateTime now)
         {
-            CartesianChart.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromSeconds(1).Ticks; // lets force the axis to be 100ms ahead
-            CartesianChart.AxisX[0].MinValue = now.Ticks - TimeSpan.FromSeconds(8).Ticks; //we only care about the last 8 seconds
+            CartesianChart.AxisX[0].MaxValue = now.Ticks + TimeSpan.FromMinutes(1).Ticks; // lets force the axis to be 100ms ahead
+            CartesianChart.AxisX[0].MinValue = now.Ticks - TimeSpan.FromMinutes(18).Ticks; //we only care about the last 8 seconds
         }
 
         private void addLine(List<LineSeries> lines, string titulo)
@@ -117,19 +125,18 @@ namespace Arduino_teste2.Entities
                 .Y(model => model.Valor);        //use the value property as Y
 
             Charting.For<Registro>(mapper1);
-            //chartValues[lines.Count] = new ChartValues<Registro>();
             ChartValues<Registro> chart = new ChartValues<Registro>();
 
 
-            foreach (RegistroGrafico rg in registroGraficos) {
+            foreach (RegistroGrafico rg in registroGraficos)
+            {
 
-                if (rg.ChartVal == null) {
+                if (rg.ChartVal == null)
+                {
                     rg.ChartVal = chart;
                     break;
                 }
             }
-
-            
 
             LineSeries line = new LineSeries
             {
@@ -146,12 +153,14 @@ namespace Arduino_teste2.Entities
 
     }
 
-    class RegistroGrafico {
+    class RegistroGrafico
+    {
 
         public Registro Registro { get; set; }
         public ChartValues<Registro> ChartVal { get; set; }
 
-        public RegistroGrafico(Registro registro, ChartValues<Registro> chartRegistro) {
+        public RegistroGrafico(Registro registro, ChartValues<Registro> chartRegistro)
+        {
             Registro = registro;
             ChartVal = chartRegistro;
         }
